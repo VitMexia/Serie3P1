@@ -10,6 +10,8 @@ public class DNACollection {
 
     public void add(String fragment){
 
+        if(fragment == null) throw new IllegalArgumentException();
+
         Fragment tempFrag = fragmentCollection;
 
         for(int i = 0; i<fragment.length(); i++){
@@ -58,16 +60,16 @@ public class DNACollection {
 
             switch(p.charAt(i)){
                 case 'A':
-                    tempFrag = tempFrag.array[0];
+                    tempFrag = tempFrag != null ? tempFrag.array[0]: null;
                     break;
                 case 'C':
-                    tempFrag = tempFrag.array[1];
+                    tempFrag = tempFrag != null ? tempFrag.array[1]: null;
                     break;
                 case 'T':
-                    tempFrag = tempFrag.array[2];
+                    tempFrag = tempFrag != null ? tempFrag.array[2]: null;
                     break;
                 case 'G':
-                    tempFrag = tempFrag.array[3];
+                    tempFrag = tempFrag!= null ? tempFrag.array[3]: null;
                     break;
                 default:
                     throw new IllegalArgumentException();
@@ -99,9 +101,10 @@ public class DNACollection {
     }
 
 
-    class Fragment {
+    private class Fragment {
         boolean isWord;
         //A, C, T, G
         Fragment []array = new Fragment[4];
+
     }
 }
